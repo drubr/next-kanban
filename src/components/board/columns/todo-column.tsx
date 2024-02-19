@@ -1,23 +1,11 @@
-"use client";
-import { usePathname } from "next/navigation";
-import { formatBoardTitle } from "@/helpers";
+import { getColumnItems } from "@/lib";
+import BoardColumn from "@/components/board/column/board-column";
 
-export default function TodoColumn() {
-  const pathname = usePathname();
-  const boardTitle = formatBoardTitle(pathname);
+export default async function TodoColumn({ boardName }: { boardName: string }) {
+  const todos = await getColumnItems({
+    boardName: boardName,
+    columnStatus: "Todo",
+  });
 
-  return (
-    <div className="inline-block w-[16rem] space-y-6">
-      <div className="text-muted flex items-center gap-2 text-xs uppercase tracking-widest">
-        <span className="h-3 w-3 shrink-0 rounded-full bg-sky-400"></span>
-        Todo (4)
-      </div>
-      <ul className="space-y-4">
-        <li className="h-16 rounded-lg bg-slate-800"></li>
-        <li className="h-16 rounded-lg bg-slate-800"></li>
-        <li className="h-16 rounded-lg bg-slate-800"></li>
-        <li className="h-16 rounded-lg bg-slate-800"></li>
-      </ul>
-    </div>
-  );
+  return <BoardColumn title="Todos" color="#22d3ee" tasks={todos} />;
 }

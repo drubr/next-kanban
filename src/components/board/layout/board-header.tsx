@@ -7,7 +7,7 @@ export default function BoardHeader() {
   const title = formatBoardTitle(pathname);
 
   return (
-    <header className="flex items-center justify-between gap-4 border-b border-b-slate-800 bg-slate-900 px-8 py-4">
+    <header className="sticky top-0 flex items-center justify-between gap-4 border-b border-b-slate-800 bg-slate-900 px-8 py-4">
       <h1 className="text-xl font-semibold">{title}</h1>
 
       <button

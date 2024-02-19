@@ -1,32 +1,33 @@
-import BoardHeader from "@/components/board/board-header";
+import BoardHeader from "@/components/board/layout/board-header";
 import TodoColumn from "@/components/board/columns/todo-column";
 import DoingColumn from "@/components/board/columns/doing-column";
 import DoneColumn from "@/components/board/columns/done-column";
 import NewColumn from "@/components/board/columns/new-column";
 import { Suspense } from "react";
-import BoardColumnLoading from "@/components/board/columns/board-column-loading";
+import BoardColumnLoading from "@/components/board/column/board-column-loading";
+import { formatBoardTitle } from "@/helpers";
 
-export default function Board() {
+export default function Board({ board }: { board: string }) {
+  const boardName = formatBoardTitle(board);
+
   return (
-    <div className="flex-1 bg-slate-950">
+    <div className="flex-1 overflow-auto bg-slate-950">
       <BoardHeader />
 
       <section className="flex gap-4 p-4">
         <Suspense fallback={<BoardColumnLoading />}>
-          <TodoColumn />
+          <TodoColumn boardName={boardName} />
         </Suspense>
 
         <Suspense fallback={<BoardColumnLoading />}>
-          <DoingColumn />
+          <DoingColumn boardName={boardName} />
         </Suspense>
 
         <Suspense fallback={<BoardColumnLoading />}>
-          <DoneColumn />
+          <DoneColumn boardName={boardName} />
         </Suspense>
 
-        <Suspense fallback={<BoardColumnLoading />}>
-          <NewColumn />
-        </Suspense>
+        <NewColumn />
       </section>
     </div>
   );
