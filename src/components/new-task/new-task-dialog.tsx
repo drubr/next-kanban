@@ -1,7 +1,7 @@
 "use client";
 
 import { useUpdateSearchParams } from "@/hooks/useUpdateSearchParams";
-import { addNewTaskFormAction } from "@/components/new-task/new-task-action";
+import { addNewTask } from "@/lib";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import SubtaskSection from "@/components/new-task/subtask/subtask-section";
 
@@ -13,20 +13,27 @@ export default function NewTaskDialog() {
 
   return (
     <dialog
-      className="animate-fadeUp fixed bottom-0 left-0 right-0 z-50 max-h-[90vh] w-full rounded-xl bg-slate-900 p-8 text-white lg:inset-0 lg:h-[75vh] lg:w-[50vw]"
+      className="animate-fadeUp fixed bottom-0 left-0 right-0 z-50 grid max-h-[90vh] w-full grid-rows-[auto_1fr] overflow-y-auto rounded-xl bg-slate-900 text-white lg:inset-0 lg:h-[75vh] lg:w-[50vw]"
       open={true}
     >
-      <header className="mb-5">
+      <div className="sticky top-2.5">
+        <span
+          className="mx-auto block h-2 w-16 cursor-pointer rounded-full bg-slate-800"
+          onClick={() => deleteSearchParam("newTask")}
+        ></span>
+      </div>
+
+      <header className="relative mb-5 px-8 pt-6">
         <h2 className="text-xl font-semibold">Add new task</h2>
       </header>
 
       <form
         id="new-task-form"
         name="New task form"
-        action={(formData) => addNewTaskFormAction(formData)}
-        className="flex flex-col gap-4"
+        action={(formData) => addNewTask(formData)}
+        className="flex flex-1 flex-col gap-4"
       >
-        <div className="grid flex-1 gap-4">
+        <div className="grid flex-1 gap-4 px-8 py-6">
           <div className="grid gap-2">
             <label className="font-semibold" htmlFor="new-task-title-input">
               Title
@@ -62,11 +69,10 @@ export default function NewTaskDialog() {
             <select
               id="new-task-status-select"
               name="new-task-status-select"
+              defaultValue="todo"
               className="select-none appearance-none rounded border border-slate-800 bg-transparent px-4 py-3"
             >
-              <option value="todo" selected>
-                Todo
-              </option>
+              <option value="todo">Todo</option>
               <option value="doing">Doing</option>
               <option value="done">Done</option>
             </select>
@@ -77,12 +83,14 @@ export default function NewTaskDialog() {
           </div>
         </div>
 
-        <button
-          type="submit"
-          className="sticky bottom-0 rounded-full bg-violet-400 px-4 py-2"
-        >
-          Create task
-        </button>
+        <div className="sticky bottom-0 w-full border-t border-t-slate-800 bg-slate-900 p-4">
+          <button
+            type="submit"
+            className="w-full rounded-full bg-violet-400 px-4 py-2"
+          >
+            Create task
+          </button>
+        </div>
       </form>
     </dialog>
   );

@@ -3,6 +3,7 @@
 import { Board } from "@/interfaces";
 import { unstable_noStore as noStore } from "next/cache";
 import { promises as fs } from "fs";
+import { redirect } from "next/navigation";
 
 export async function getData(): Promise<{ boards: Board[] }> {
   noStore();
@@ -49,4 +50,7 @@ export async function getColumnItems({
 
 export async function addNewTask(formData: FormData) {
   console.log("addNewTask", formData);
+  // Validate here
+
+  redirect("/");
 }
