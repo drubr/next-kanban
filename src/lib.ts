@@ -46,3 +46,7 @@ export async function getColumnItems({
 
   return column.tasks;
 }
+
+export async function addNewTask(formData: FormData) {
+  console.log("addNewTask", formData);
+}

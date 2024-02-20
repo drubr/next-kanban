@@ -1,9 +1,10 @@
 "use client";
+
 import { formatBoardTitle } from "@/helpers";
-import { usePathname } from "next/navigation";
+import { useUpdateSearchParams } from "@/hooks/useUpdateSearchParams";
 
 export default function BoardHeader() {
-  const pathname = usePathname();
+  const { toggleSearchParam, pathname } = useUpdateSearchParams();
   const title = formatBoardTitle(pathname);
 
   return (
@@ -14,6 +15,9 @@ export default function BoardHeader() {
         className="rounded-full bg-violet-600 px-4 py-3"
         title="Add new task"
         aria-label="Add new task button"
+        onClick={() => {
+          toggleSearchParam("newTask", "true");
+        }}
       >
         + Add new task
       </button>
