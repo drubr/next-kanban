@@ -14,6 +14,15 @@ export default function TaskItem({ task }: { task: Task }) {
     });
   };
 
+  const progress = (
+    (task.subtasks.reduce((accumulator, subtask) => {
+      if (subtask.isCompleted) return accumulator + 1;
+      return accumulator;
+    }, 0) /
+      task.subtasks.length) *
+    100
+  ).toFixed(0);
+
   return (
     <button
       className="bg-app-dark-grey w-full cursor-pointer space-y-1 rounded-lg p-4 text-left"
@@ -31,6 +40,13 @@ export default function TaskItem({ task }: { task: Task }) {
         <span className="px-1">of</span>
         {task.subtasks.length} subtasks done
       </p>
+
+      <div className="bg-app-very-dark-grey relative h-4 w-full rounded-full">
+        <span
+          style={{ width: `${progress}%` }}
+          className="bg-app-main-purple absolute bottom-0 left-0 top-0 rounded-full"
+        ></span>
+      </div>
     </button>
   );
 }
