@@ -2,6 +2,7 @@
 
 import { Task } from "@/interfaces";
 import { useUpdateSearchParams } from "@/hooks/useUpdateSearchParams";
+import { motion } from "framer-motion";
 
 export default function TaskItem({ task }: { task: Task }) {
   const { updateSearchParams } = useUpdateSearchParams();
@@ -42,10 +43,10 @@ export default function TaskItem({ task }: { task: Task }) {
       </p>
 
       <div className="bg-app-very-dark-grey relative h-4 w-full rounded-full">
-        <span
-          style={{ width: `${progress}%` }}
+        <motion.span
+          animate={{ width: ["0%", `${progress}%`] }}
           className="bg-app-main-purple absolute bottom-0 left-0 top-0 rounded-full"
-        ></span>
+        ></motion.span>
       </div>
     </button>
   );
