@@ -15,3 +15,7 @@ export function formatBoardName(boardTitle: string) {
 export function formatBoardNameAsURL(boardName: string) {
   return boardName.trim().replaceAll(" ", "-").toLowerCase();
 }
+
+export function formatTaskTitle(taskTitle: string) {
+  return taskTitle.trim().replaceAll(" ", "").replaceAll("-", "").toLowerCase();
+}

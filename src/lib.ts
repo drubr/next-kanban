@@ -3,7 +3,6 @@
 import { Board } from "@/interfaces";
 import { unstable_noStore as noStore } from "next/cache";
 import { promises as fs } from "fs";
-import { redirect } from "next/navigation";
 import { formatBoardNameAsURL } from "@/helpers";
 
 export async function getData(): Promise<{ boards: Board[] }> {
@@ -18,11 +17,6 @@ export async function getData(): Promise<{ boards: Board[] }> {
     });
     return res.json();
   }
-}
-
-export async function getBoards() {
-  const { boards } = await getData();
-  return boards;
 }
 
 export async function getBoardNames(urlFormatted?: boolean) {
@@ -61,16 +55,4 @@ export async function getColumnItems({
   if (column === null || column === undefined) return [];
 
   return column.tasks;
-}
-
-export async function addNewTask(formData: FormData) {
-  console.log("addNewTask", formData);
-
-  redirect("/");
-}
-
-export async function updateTask(taskId: string, formData: FormData) {
-  console.log("updateTask", { taskId, formData });
-
-  redirect("/");
 }
