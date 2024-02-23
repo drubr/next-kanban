@@ -12,7 +12,7 @@ export default function BoardColumn({
   color: string;
 }) {
   return (
-    <div className="inline-block w-[16rem] space-y-6">
+    <div className="inline-block w-[16rem] shrink-0 space-y-6">
       <BoardTaskListHeader
         title={title}
         tasksCount={tasks.length}
@@ -23,7 +23,7 @@ export default function BoardColumn({
         <button
           title={`Add new ${title} board item`}
           aria-label={`Add new ${title} board item`}
-          className="text-muted w-full space-y-1 rounded-lg border border-slate-800 p-4 text-center transition hover:bg-slate-800"
+          className="w-full space-y-1 rounded-lg border border-slate-800 p-4 text-center text-muted transition hover:bg-slate-800"
         >
           +
         </button>

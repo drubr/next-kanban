@@ -2,7 +2,7 @@ export function capitalize(str: string): string {
   return str.replace(/\b\w/g, (char) => char.toUpperCase());
 }
 
-export function formatBoardTitle(boardTitle: string) {
+export function formatBoardName(boardTitle: string) {
   return capitalize(
     boardTitle
       .trim()
@@ -10,4 +10,8 @@ export function formatBoardTitle(boardTitle: string) {
       .replace("/", "")
       .replaceAll("-", " "),
   );
+}
+
+export function formatBoardNameAsURL(boardName: string) {
+  return boardName.trim().replaceAll(" ", "-").toLowerCase();
 }

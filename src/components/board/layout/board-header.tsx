@@ -1,11 +1,11 @@
 "use client";
 
-import { formatBoardTitle } from "@/helpers";
+import { formatBoardName } from "@/helpers";
 import { useUpdateSearchParams } from "@/hooks/useUpdateSearchParams";
 
 export default function BoardHeader() {
   const { toggleSearchParam, pathname } = useUpdateSearchParams();
-  const title = formatBoardTitle(pathname);
+  const title = formatBoardName(pathname);
 
   return (
     <header className="sticky top-0 flex items-center justify-between gap-4 border-b border-b-slate-800 bg-slate-900 px-8 py-4">

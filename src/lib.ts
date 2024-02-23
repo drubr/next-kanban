@@ -4,6 +4,7 @@ import { Board } from "@/interfaces";
 import { unstable_noStore as noStore } from "next/cache";
 import { promises as fs } from "fs";
 import { redirect } from "next/navigation";
+import { formatBoardNameAsURL } from "@/helpers";
 
 export async function getData(): Promise<{ boards: Board[] }> {
   noStore();
@@ -22,6 +23,20 @@ export async function getData(): Promise<{ boards: Board[] }> {
 export async function getBoards() {
   const { boards } = await getData();
   return boards;
+}
+
+export async function getBoardNames(urlFormatted?: boolean) {
+  const { boards } = await getData();
+
+  let boardNames: string[] = [];
+
+  for (const board of boards) {
+    urlFormatted
+      ? boardNames.push(formatBoardNameAsURL(board.name))
+      : boardNames.push(board.name);
+  }
+
+  return boardNames;
 }
 
 export async function getColumnItems({
