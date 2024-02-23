@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import SidebarNavigation from "@/components/sidebar/sidebar-navigation";
 import SidebarNavigationLoading from "@/components/sidebar/sidebar-navigation-loading";
 import Logo from "@/components/svg/logo";
+import BoardIcon from "@/components/svg/board-icon";
 
 export default function Sidebar({ board }: { board: string }) {
   return (
@@ -17,10 +18,10 @@ export default function Sidebar({ board }: { board: string }) {
       </Suspense>
 
       <div>
-        <div className="text-app-main-purple flex items-center gap-2 rounded-r-full bg-transparent py-2 pl-6 text-sm">
-          <span className="bg-app-main-purple inline-block h-4 w-4 rounded"></span>
-          + Create New Board
-        </div>
+        <button className="text-app-main-purple group flex items-center gap-2 rounded-r-full bg-transparent py-2 pl-6 text-sm">
+          <BoardIcon fill="group-hover:fill-white fill-app-main-purple" /> +
+          Create New Board
+        </button>
       </div>
     </aside>
   );

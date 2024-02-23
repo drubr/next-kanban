@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export default function IconBoard({ fill }: { fill?: string }) {
+export default function BoardIcon({ fill }: { fill?: string }) {
   return (
     <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
       <path

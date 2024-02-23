@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getBoardNames } from "@/lib";
 import { formatBoardName, formatBoardNameAsURL } from "@/helpers";
 import { clsx } from "clsx";
-import IconBoard from "@/components/svg/icon-board";
+import BoardIcon from "@/components/svg/board-icon";
 
 export default async function SidebarNavigation({ board }: { board: string }) {
   const boardNames = await getBoardNames(true);
@@ -30,7 +30,7 @@ export default async function SidebarNavigation({ board }: { board: string }) {
                 href={`/board/${formattedBoardName}`}
                 className={`hover:bg-app-main-purple group flex items-center gap-2 rounded-r-full py-2 pl-6 text-sm transition hover:text-white ${formattedBoardName === board ? "bg-app-main-purple text-white" : "text-app-medium-grey bg-transparent"}`}
               >
-                <IconBoard
+                <BoardIcon
                   fill={formattedBoardName === board ? "fill-white" : undefined}
                 />
 
