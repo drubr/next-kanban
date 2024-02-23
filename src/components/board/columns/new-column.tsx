@@ -6,7 +6,7 @@ export default function NewColumn() {
       <button
         title="Add new column to current board"
         aria-label="Add new column to current board"
-        className="group w-full space-y-1 rounded-lg border border-transparent bg-slate-800 p-4 text-center text-muted"
+        className="bg-app-dark-grey text-muted group w-full space-y-1 rounded-lg border border-transparent p-4 text-center"
       >
         <span className="transition group-hover:text-white">+ New Column</span>
       </button>

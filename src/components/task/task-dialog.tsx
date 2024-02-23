@@ -1,14 +1,19 @@
 "use client";
 
 import { useUpdateSearchParams } from "@/hooks/useUpdateSearchParams";
-import { addNewTask } from "@/lib";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { updateTask } from "@/lib";
 import SubtaskSection from "@/components/new-task/subtask/subtask-section";
+import { ChevronDownIcon } from "@heroicons/react/24/outline";
 
-export default function NewTaskDialog() {
+export default function TaskDialog() {
   const { searchParams, deleteSearchParam, overlayBackdrop } =
     useUpdateSearchParams();
-  const showDialog = overlayBackdrop && searchParams.get("newTask") === "1";
+
+  const showDialog = !!(
+    overlayBackdrop &&
+    searchParams.get("task") &&
+    searchParams.get("task") !== ""
+  );
 
   if (!showDialog) return null;
 
@@ -20,18 +25,20 @@ export default function NewTaskDialog() {
       <div className="sticky top-2.5">
         <span
           className="mx-auto block h-2 w-16 cursor-pointer rounded-full bg-slate-800"
-          onClick={() => deleteSearchParam("newTask")}
+          onClick={() => deleteSearchParam("task")}
         ></span>
       </div>
 
       <header className="relative mb-5 px-8 pt-6">
-        <h2 className="text-xl font-semibold">Add new task</h2>
+        <h2 className="text-xl font-semibold">Edit task</h2>
       </header>
 
       <form
-        id="new-task-form"
-        name="New task form"
-        action={(formData) => addNewTask(formData)}
+        id="task-form"
+        name="Task form"
+        action={(formData) =>
+          updateTask(searchParams.get("task") ?? "Task", formData)
+        }
         className="flex flex-1 flex-col gap-4"
       >
         <div className="grid flex-1 gap-4 px-8 py-6">

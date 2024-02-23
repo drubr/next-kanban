@@ -1,5 +1,5 @@
-import BoardTaskListHeader from "@/components/board/task/board-task-list-header";
-import BoardTaskList from "@/components/board/task/board-task-list";
+import BoardTaskListHeader from "@/components/task/board-task-list-header";
+import BoardTaskList from "@/components/task/board-task-list";
 import { Task } from "@/interfaces";
 
 export default function BoardColumn({
@@ -23,7 +23,7 @@ export default function BoardColumn({
         <button
           title={`Add new ${title} board item`}
           aria-label={`Add new ${title} board item`}
-          className="w-full space-y-1 rounded-lg border border-slate-800 p-4 text-center text-muted transition hover:bg-slate-800"
+          className="text-muted w-full space-y-1 rounded-lg border border-slate-800 p-4 text-center transition hover:bg-slate-800"
         >
           +
         </button>

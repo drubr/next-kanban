@@ -34,7 +34,7 @@ export default function SubtaskSection() {
 
       <button
         type="button"
-        className="sticky bottom-0 w-max rounded-full bg-white px-4 py-2 font-semibold text-violet-800"
+        className="text-app-main-purple sticky bottom-0 w-max rounded-full bg-white px-4 py-2 font-semibold"
         onClick={() =>
           setSubtasks((prevState) => [...prevState, subtasks.length + 1])
         }

@@ -7,7 +7,13 @@ export const useUpdateSearchParams = () => {
   const searchParams = useSearchParams();
 
   const createQueryString = useCallback(
-    (name: string, value: string, append?: boolean, withCleanup?: boolean) => {
+    (
+      name: string,
+      value: string,
+      append?: boolean,
+      withCleanup?: boolean,
+      backdrop?: boolean,
+    ) => {
       const params = new URLSearchParams(searchParams);
 
       /** For some Search Params, you want to clean up all currently present other Search Params first */
@@ -30,6 +36,10 @@ export const useUpdateSearchParams = () => {
         params.set(name, value);
       }
 
+      if (backdrop) {
+        params.set("backdrop", "1");
+      }
+
       return params.toString();
     },
     [searchParams],
@@ -41,17 +51,19 @@ export const useUpdateSearchParams = () => {
     append,
     withCleanup,
     scroll = false,
+    backdrop,
   }: {
     withName: string;
     withValue: string;
     append?: boolean;
     withCleanup?: boolean;
     scroll?: boolean;
+    backdrop?: boolean;
   }) => {
     router.push(
       pathname +
         "?" +
-        createQueryString(withName, withValue, append, withCleanup),
+        createQueryString(withName, withValue, append, withCleanup, backdrop),
       { scroll: scroll },
     );
   };
@@ -90,5 +102,8 @@ export const useUpdateSearchParams = () => {
     updateSearchParams,
     deleteSearchParam,
     toggleSearchParam,
+    overlayBackdrop: !!(
+      searchParams.get("backdrop") && searchParams.get("backdrop") === "1"
+    ),
   };
 };

@@ -65,7 +65,12 @@ export async function getColumnItems({
 
 export async function addNewTask(formData: FormData) {
   console.log("addNewTask", formData);
-  // Validate here
+
+  redirect("/");
+}
+
+export async function updateTask(taskId: string, formData: FormData) {
+  console.log("updateTask", { taskId, formData });
 
   redirect("/");
 }
