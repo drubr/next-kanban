@@ -16,7 +16,7 @@ export default function TaskFormLoading() {
         <div className="grid flex-1 gap-4 px-8 py-6">
           <div className="h-8 w-1/4 rounded bg-app-very-dark-grey"></div>
 
-          <div className="h-8 w-full rounded bg-app-very-dark-grey"></div>
+          <div className="h-12 w-3/4 rounded bg-app-very-dark-grey"></div>
 
           <div className="flex items-center gap-1 font-bold">
             Subtasks (
@@ -24,18 +24,18 @@ export default function TaskFormLoading() {
             of <div className="h-4 w-4 rounded bg-app-very-dark-grey"></div>)
           </div>
 
-          <ul className="grid gap-2">
+          <ul className="space-y-4">
             <li>
-              <div className="flex items-center gap-2 rounded bg-app-very-dark-grey px-4 py-3">
-                <div className="h-8 w-4 bg-app-very-dark-grey"></div>
-                <div className="h-8 w-full bg-app-very-dark-grey"></div>
+              <div className="flex items-center gap-2 rounded bg-app-very-dark-grey">
+                <div className="h-4 w-4 shrink-0 bg-app-very-dark-grey"></div>
+                <div className="h-10 w-full bg-app-very-dark-grey"></div>
               </div>
             </li>
           </ul>
 
           <div className="relative grid gap-2">
             <div>Status:</div>
-            <div className="h-8 w-full rounded bg-app-very-dark-grey"></div>
+            <div className="h-10 w-full rounded bg-app-very-dark-grey"></div>
           </div>
         </div>
 

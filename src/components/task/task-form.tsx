@@ -25,19 +25,22 @@ export async function TaskForm({ taskHandle }: { taskHandle: string }) {
         action={async (formData) => updateTask(formData)}
       >
         <div className="grid flex-1 gap-4 px-8 py-6">
-          <input
-            type="text"
-            className="border-none bg-transparent text-xl font-bold focus:outline-none"
-            defaultValue={task.title}
-          />
+          <div className="grid">
+            <textarea
+              id="task-title-textarea"
+              name="task-title-textarea"
+              className="block resize-none border-none bg-transparent text-xl font-bold focus:outline-none"
+              defaultValue={task.title}
+            />
 
-          <textarea
-            id="task-description-textarea"
-            name="task-description-textarea"
-            placeholder="Description"
-            className="resize-none rounded border-none bg-transparent focus:outline-none"
-            defaultValue={task.description}
-          />
+            <textarea
+              id="task-description-textarea"
+              name="task-description-textarea"
+              placeholder="Description"
+              className="block resize-none rounded border-none bg-transparent focus:outline-none"
+              defaultValue={task.description}
+            />
+          </div>
 
           <div className="font-bold">
             Subtasks ({done} of {task.subtasks.length})
@@ -51,13 +54,14 @@ export async function TaskForm({ taskHandle }: { taskHandle: string }) {
                     type="checkbox"
                     name={`subtask-${index}-completed-checkbox`}
                     defaultChecked={subtask.isCompleted}
+                    className="peer"
                   />
                   <input
                     type="text"
                     id={`subtask-${index}-input`}
                     name={`subtask-${index}-input`}
                     placeholder="e.g. Make coffee"
-                    className="flex-1 bg-transparent focus:outline-none"
+                    className="flex-1 bg-transparent focus:outline-none peer-checked:line-through"
                     defaultValue={subtask.title}
                   />
                 </div>
@@ -71,7 +75,7 @@ export async function TaskForm({ taskHandle }: { taskHandle: string }) {
             <select
               id="new-task-status-select"
               name="new-task-status-select"
-              defaultValue={task.status}
+              defaultValue={task.status.toLowerCase()}
               className="select-none appearance-none rounded border border-app-lines-dark bg-transparent px-4 py-3"
             >
               <option value="todo">Todo</option>
