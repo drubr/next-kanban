@@ -1,19 +1,20 @@
 "use client";
 
 import { useUpdateSearchParams } from "@/hooks/useUpdateSearchParams";
-import { addNewTask } from "@/lib";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import SubtaskSection from "@/components/new-task/subtask/subtask-section";
+import { addNewTask } from "@/components/task/actions";
 
 export default function NewTaskDialog() {
-  const { searchParams, deleteSearchParam } = useUpdateSearchParams();
-  const showNewTaskDialog = searchParams.get("newTask") === "true";
+  const { searchParams, deleteSearchParam, overlayBackdrop } =
+    useUpdateSearchParams();
+  const showDialog = overlayBackdrop && searchParams.get("newTask") === "1";
 
-  if (!showNewTaskDialog) return null;
+  if (!showDialog) return null;
 
   return (
     <dialog
-      className="animate-fadeUp fixed bottom-0 left-0 right-0 z-50 grid max-h-[90vh] w-full grid-rows-[auto_1fr] overflow-y-auto rounded-xl bg-slate-900 text-white lg:inset-0 lg:h-[75vh] lg:w-[50vw]"
+      className="fixed bottom-0 left-0 right-0 z-50 grid max-h-[90vh] w-full animate-fadeUp grid-rows-[auto_1fr] overflow-y-auto rounded-xl bg-slate-900 text-white lg:inset-0 lg:h-[75vh] lg:w-[50vw]"
       open={true}
     >
       <div className="sticky top-2.5">
@@ -43,7 +44,7 @@ export default function NewTaskDialog() {
               id="new-task-title-input"
               name="new-task-title-input"
               placeholder="e.g. Take coffee break"
-              className="rounded border border-slate-800 bg-transparent px-4 py-3"
+              className="rounded border border-app-lines-dark bg-transparent px-4 py-3"
             />
           </div>
 
@@ -58,7 +59,7 @@ export default function NewTaskDialog() {
               id="new-task-description-textarea"
               name="new-task-description-textarea"
               placeholder="e.g. Take coffee break"
-              className="rounded border border-slate-800 bg-transparent px-4 py-3"
+              className="rounded border border-app-lines-dark bg-transparent px-4 py-3"
             />
           </div>
 
@@ -70,7 +71,7 @@ export default function NewTaskDialog() {
               id="new-task-status-select"
               name="new-task-status-select"
               defaultValue="todo"
-              className="select-none appearance-none rounded border border-slate-800 bg-transparent px-4 py-3"
+              className="select-none appearance-none rounded border border-app-lines-dark bg-transparent px-4 py-3"
             >
               <option value="todo">Todo</option>
               <option value="doing">Doing</option>
@@ -78,7 +79,7 @@ export default function NewTaskDialog() {
             </select>
 
             <div className="absolute bottom-4 right-4 select-none">
-              <ChevronDownIcon className="text-muted h-4 w-4" />
+              <ChevronDownIcon className="h-4 w-4 text-muted" />
             </div>
           </div>
         </div>
@@ -86,7 +87,7 @@ export default function NewTaskDialog() {
         <div className="sticky bottom-0 w-full border-t border-t-slate-800 bg-slate-900 p-4">
           <button
             type="submit"
-            className="w-full rounded-full bg-violet-400 px-4 py-2"
+            className="w-full rounded-full bg-app-main-purple px-4 py-2"
           >
             Create task
           </button>

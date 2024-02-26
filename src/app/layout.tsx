@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import NewTaskDialog from "@/components/new-task/new-task-dialog";
 import OverlayBackdrop from "@/components/overlay-backdrop";
+import TaskDialog from "@/components/task/task-dialog";
+import { clsx } from "clsx";
 
-const inter = Inter({ subsets: ["latin"] });
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,8 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={clsx("bg-app-very-dark-grey", plusJakartaSans.className)}
+      >
         {children}
+
+        <TaskDialog />
         <NewTaskDialog />
         <OverlayBackdrop />
       </body>
